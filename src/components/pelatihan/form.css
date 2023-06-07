@@ -1,0 +1,110 @@
+body {
+  background-color: #ffffff;
+}
+
+.dataPendaftar-container {
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+.dataPendaftar-card {
+  width: 540px;
+  height: 740px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding-bottom: 20px;
+}
+
+.dataPendaftar-col {
+  max-width: 602px;
+}
+
+.daftarBtn {
+  width: 180px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: #a17242;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.daftarBtn:hover {
+  background-color: transparent;
+  border: 2px solid #a17242;
+  color: #a17242;
+}
+
+.hubungiBtn {
+  width: 250px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bolder;
+  background-color: #0cf840;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hubungiBtn:hover {
+  background-color: transparent;
+  border: 2px solid #0cf840;
+  color: #0cf840;
+}
+
+.form-control {
+  height: 64px;
+  border-radius: 10px;
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .dataPendaftar-card {
+    width: 90%;
+    height: 650px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
+
+  .dataPendaftar-col {
+    max-width: 100%;
+  }
+
+  .daftarBtn {
+    width: 150px;
+    height: 50px;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .hubungiBtn {
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    height: 50px;
+  }
+}

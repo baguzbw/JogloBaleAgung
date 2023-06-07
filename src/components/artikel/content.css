@@ -1,0 +1,49 @@
+.btn-custom-size {
+  border-radius: 10px;
+  font-size: 0.7rem;
+  padding: 10px 20px;
+}
+
+.date-semi-bold {
+  font-weight: 600;
+}
+
+.image-column-custom {
+  position: relative;
+}
+
+.card-custom {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title-custom {
+  font-size: 22px !important;
+  overflow-wrap: anywhere !important;
+}
+
+.btn-modif {
+  background-color: transparent;
+  border: 2px solid #603a15;
+  color: #603a15;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-modif:hover {
+  background-color: #603a15;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .card-image-custom {
+    min-width: 600px;
+  }
+  .image-column-custom {
+    min-width: 600px;
+  }
+}

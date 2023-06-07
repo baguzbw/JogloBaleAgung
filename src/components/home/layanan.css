@@ -1,0 +1,91 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f1d299;
+  padding: 30px;
+}
+
+.carousel-title {
+  margin-left: 35px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 46px;
+}
+
+.carousel-wrapper {
+  width: 100%;
+}
+
+.carousel-card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 80px;
+  margin-top: 40px;
+  width: 404px;
+  height: 462px;
+}
+
+.carousel-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  color: #603a15;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-card-text {
+  text-align: center;
+  padding: 10px 0;
+  font-weight: 500;
+  line-height: 1.4;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0px 4px 16px #603a15;
+  color: #603a15;
+  border-radius: 20px;
+}
+
+.carousel-card .illustration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -135%);
+  width: 150px;
+  height: 150px;
+}
+
+@media (max-width: 576px) {
+  .carousel-title {
+    font-size: 18px;
+    text-align: center;
+  }
+  .carousel-card {
+    width: 280px;
+    height: 342px;
+  }
+  .carousel-card .illustration {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -110%);
+  }
+  .carousel-card-text {
+    padding: 0px 0;
+  }
+}

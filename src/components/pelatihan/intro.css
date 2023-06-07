@@ -1,0 +1,39 @@
+.section {
+  width: 100%;
+  height: 660px;
+  background-image: url("../assets/bgaksen.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.image-center-left {
+  display: flex;
+  justify-content: center;
+  margin-top: 92px;
+  align-items: center;
+}
+
+.image-rounded {
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.image-rounded:hover {
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.title-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 80px;
+  max-width: 630px;
+}
+
+@media (max-width: 991.98px) {
+  .section {
+    height: auto;
+  }
+}
