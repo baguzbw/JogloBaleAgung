@@ -1,7 +1,8 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 import { API_BASE_URL } from "../config";
 import "./form.css";
 
@@ -10,37 +11,50 @@ const FormHome = () => {
   const [noTelp, setnoTelp] = useState("");
   const [email, setemail] = useState("");
   const [pesan, setpesan] = useState("");
+  const SITE_KEY = process.env.REACT_APP_SITE_KEY;
+  const [captchaDanger, setCaptchaDanger] = useState("none");
+  const captchaRef = useRef(null);
 
-  const handleSubmit = async () => {
-    try {
-      // Retrieve the CSRF token from your server
-      const tokenResponse = await axios.get(`${API_BASE_URL}csrf-token`);
-      const csrfToken = tokenResponse.data.csrfToken;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let token = captchaRef.current.getValue();
+    captchaRef.current.reset();
 
-      const response = await axios.post(
-        `${API_BASE_URL}bukutamu`,
-        {
-          nama: nama,
-          noTelp: noTelp,
-          email: email,
-          pesan: pesan,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the header
+    if (token === "") {
+      setCaptchaDanger("block");
+    } else {
+      setCaptchaDanger("none");
+      try {
+        // Retrieve the CSRF token from your server
+        const tokenResponse = await axios.get(`${API_BASE_URL}csrf-token`);
+        const csrfToken = tokenResponse.data.csrfToken;
+
+        const response = await axios.post(
+          `${API_BASE_URL}bukutamu`,
+          {
+            nama: nama,
+            noTelp: noTelp,
+            email: email,
+            pesan: pesan,
           },
-        }
-      );
-      setNama("");
-      setnoTelp("");
-      setemail("");
-      setpesan("");
-      console.log(response.data);
-      alert("Data berhasil dikirim!");
-    } catch (error) {
-      console.error("Terjadi kesalahan saat mengirim data", error);
-      alert("Terjadi kesalahan saat mengirim data");
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the header
+            },
+          }
+        );
+
+        setNama("");
+        setnoTelp("");
+        setemail("");
+        setpesan("");
+        console.log(response.data);
+        alert("Data berhasil dikirim!");
+      } catch (error) {
+        console.error("Terjadi kesalahan saat mengirim data", error);
+        alert("Terjadi kesalahan saat mengirim data");
+      }
     }
   };
 
@@ -83,6 +97,8 @@ const FormHome = () => {
             <Form.Group controlId="formPesan" className="mb-3">
               <Form.Control as="textarea" name="pesan" value={pesan} onChange={(text) => setpesan(text.target.value)} placeholder="Pesan" className="form-size" />
             </Form.Group>
+            <ReCAPTCHA sitekey={SITE_KEY} ref={captchaRef} />
+            <p style={{ color: "red", display: captchaDanger }}> Silahkan lengkapi captcha terlebih dahulu! </p>
             <div className="d-flex">
               <Button type="button" className="button-size" onClick={handleSubmit}>
                 Kirim Pesan

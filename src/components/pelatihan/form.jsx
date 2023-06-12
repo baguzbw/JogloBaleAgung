@@ -2,8 +2,9 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 import { API_BASE_URL } from "../config";
 import "./form.css";
 
@@ -13,6 +14,9 @@ const DataPendaftar = () => {
   const [email, setemail] = useState("");
   const [jenis, setjenis] = useState("");
   const [jenisOptions, setJenisOptions] = useState([]);
+  const SITE_KEY = process.env.REACT_APP_SITE_KEY;
+  const [captchaDanger, setCaptchaDanger] = useState("none");
+  const captchaRef = useRef(null);
 
   useEffect(() => {
     fetchJenisOptions();
@@ -28,36 +32,45 @@ const DataPendaftar = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    try {
-      // Retrieve the CSRF token from your server
-      const tokenResponse = await axios.get(`${API_BASE_URL}csrf-token1`);
-      const csrfToken = tokenResponse.data.csrfToken;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let token = captchaRef.current.getValue();
+    captchaRef.current.reset();
 
-      const response = await axios.post(
-        `${API_BASE_URL}pendaftar`,
-        {
-          nama: nama,
-          noTelp: noTelp,
-          email: email,
-          jenis: jenis,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the header
+    if (token === "") {
+      setCaptchaDanger("block");
+    } else {
+      setCaptchaDanger("none");
+      try {
+        // Retrieve the CSRF token from your server
+        const tokenResponse = await axios.get(`${API_BASE_URL}csrf-token1`);
+        const csrfToken = tokenResponse.data.csrfToken;
+
+        const response = await axios.post(
+          `${API_BASE_URL}pendaftar`,
+          {
+            nama: nama,
+            noTelp: noTelp,
+            email: email,
+            jenis: jenis,
           },
-        }
-      );
-      setNama("");
-      setnoTelp("");
-      setemail("");
-      setjenis("");
-      console.log(response.data);
-      alert("Data berhasil dikirim!");
-    } catch (error) {
-      console.error("Terjadi kesalahan saat mengirim data", error);
-      alert("Terjadi kesalahan saat mengirim data");
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": csrfToken, // Include the CSRF token in the header
+            },
+          }
+        );
+        setNama("");
+        setnoTelp("");
+        setemail("");
+        setjenis("");
+        console.log(response.data);
+        alert("Data berhasil dikirim!");
+      } catch (error) {
+        console.error("Terjadi kesalahan saat mengirim data", error);
+        alert("Terjadi kesalahan saat mengirim data");
+      }
     }
   };
 
@@ -114,6 +127,8 @@ const DataPendaftar = () => {
                     />
                   </InputGroup>
                 </Form.Group>
+                <ReCAPTCHA sitekey={SITE_KEY} ref={captchaRef} />
+                <p style={{ color: "red", display: captchaDanger }}> Silahkan lengkapi captcha terlebih dahulu! </p>
                 <Button style={{ marginTop: "20px" }} type="button" className="daftarBtn" onClick={handleSubmit}>
                   Daftar
                 </Button>
