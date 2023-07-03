@@ -101,7 +101,7 @@ function Event() {
             <div className="row g-0">
               <div className="col-md-4">
                 <img
-                  src={"https://v3421017.mhs.d3tiuns.com/" + card.gambar_event}
+                  src={`${API_GAMBAR_URL}${card.gambar_event}`}
                   alt={card.nama_event}
                   className="img-fluid"
                   style={{ objectFit: "cover", height: "400px", width: "1000px" }}

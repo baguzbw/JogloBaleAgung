@@ -38,10 +38,8 @@ const Paket = () => {
         {paketData.map((paket_alat) => (
           <Col key={paket_alat.id} md={6}>
             <Card
-              className="card-custom"
+              className="card-paket"
               style={{
-                width: "1120px",
-                height: "348px",
                 backgroundImage: `url(${paket_alat.id % 2 === 0 ? PaketCoklat : PaketPutih})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",

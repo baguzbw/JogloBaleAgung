@@ -23,3 +23,13 @@
     margin: 0 auto;
   }
 }
+.image-row {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.image-row img {
+  margin-right: 10px;
+  width: 40px;
+}

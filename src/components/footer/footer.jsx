@@ -1,6 +1,10 @@
 import axios from "axios";
 import { MDBCol, MDBContainer, MDBFooter, MDBRow } from "mdb-react-ui-kit";
 import React, { Component } from "react";
+import LogoSV from "../assets/LOGO-SV.png";
+import LogoTIUNS from "../assets/TIUNS.png";
+import LogoUNS from "../assets/UNS.png";
+import Lifemedia from "../assets/lifemedia.png";
 import { API_BASE_URL, API_GAMBAR_URL } from "../config";
 import "./custom.css";
 
@@ -66,6 +70,15 @@ class Footer extends Component {
           <a className="text-reset fw-bold" href="/">
             Joglo Bale Agung Cendana
           </a>
+          <p class="fs-12">
+            Made and Colaboration with <span class="heart"></span>:
+          </p>
+          <div className="image-row justify-content-center">
+            <img src={LogoUNS} alt="logo UNS" />
+            <img src={LogoSV} alt="logo SV" />
+            <img src={LogoTIUNS} alt="logo TI UNS" />
+            <img src={Lifemedia} alt="logo lifemedia" />
+          </div>
         </div>
       </MDBFooter>
     );

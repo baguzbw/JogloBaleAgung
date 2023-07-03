@@ -14,12 +14,14 @@
   gap: 10px;
   margin-bottom: 50px;
 }
+
 .card-content-white {
   color: white;
 }
 
-.card-custom {
+.card-paket {
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .card-content {
@@ -55,16 +57,13 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+
 .btn-custom:last-child {
   margin-right: 0;
 }
 
 .btn-custom-2 {
   background-color: #42b549;
-}
-
-.btn-custom:last-child {
-  margin-right: 0;
 }
 
 .btn-custom-1:hover,
@@ -85,6 +84,20 @@
 .btn-custom-2:hover {
   color: #0cf840;
   border-color: #0cf840;
+}
+
+@media (min-width: 1200px) {
+  .card-paket {
+    width: 1120px;
+    height: 348px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .card-paket {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-width: 991.98px) {
